@@ -1,7 +1,11 @@
+using CadastroClientesCore.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<CadastroClientesContext>();
+builder.Services.AddTransient<RepositorioClientes>();
 
 var app = builder.Build();
 
