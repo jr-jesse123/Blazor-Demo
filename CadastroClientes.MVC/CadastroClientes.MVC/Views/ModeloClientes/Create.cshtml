@@ -55,7 +55,7 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script>
+   @* <script>
         function TestaCPF(strCPF) {
             var Soma;
             var Resto;
@@ -88,7 +88,7 @@
                 }else{
                     console.log('false');
                     setTimeout(function name(params) {
-                        $('body > div > main > div > div > form > div:nth-child(2) > span')[0].innerText = 'teste'
+                        $('body > div > main > div > div > form > div:nth-child(2) > span')[0].innerText = 'Formato do CPF INVÁLIDO'
                     }, 100)
                 }
                 
@@ -96,7 +96,5 @@
         }
         ValidarCpf()
 
-        //var strCPF = "12345678909";
-        //alert(TestaCPF(strCPF));
-    </script>
+    </script>*@
 }

@@ -12,11 +12,15 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @*@Html.DisplayNameFor(model => model.Idade)*@
-            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Idade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PoderDeDecisao)
             </th>
             <th></th>
         </tr>
@@ -25,11 +29,17 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @*@Html.DisplayFor(modelItem => item.Idade)*@
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Idade)
+            </td>
+                <td>
+                    <div class="row justify-content-start align-items-center">
+                        @item.PoderDeDecisao
+                        <span class="semaforo d-inline-block mx-2 @item.PoderDeDecisao"></span>
+                    </div>
+                </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.CPF" class="btn btn-secondary">Editar</a> |
                     <a asp-action="Details" asp-route-id="@item.CPF" class="btn btn-info">Detalhes</a> |
