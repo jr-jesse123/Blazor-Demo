@@ -4,14 +4,14 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1>Editar </h1>
 
-<h4>ModeloCliente</h4>
+<h4>cliente com cpf : @Model.CPF</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="All" class="text-danger"></div>
             <input type="hidden" asp-for="CPF" />
             <div class="form-group">
       @*          <label asp-for="Idade" class="control-label"></label>
@@ -23,15 +23,38 @@
                 <input asp-for="Nome" class="form-control" />
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
+
+            <div class="row">
+                <div class="col-sm-5">
+                    <div class="form-group">
+                        <label asp-for="DataNascimento" class="control-label"></label>
+                        <input asp-for="DataNascimento" class="form-control" type="date" />
+                        <span asp-validation-for="DataNascimento" class="text-danger"></span>
+                    </div>
+                </div>
+                @*            <div class="col-sm-5">
+                <div class="form-group">
+                <label asp-for="Idade" class="control-label"></label>
+                <span id="IdadeCliente"> colocar aqui a idade do cliente</span>
+                <span asp-validation-for="Idade" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                <label asp-for="PoderDeDecisao" class="control-label"></label>
+                colocar aqui o simbolodo do poder de decisão
+                <span asp-validation-for="Idade" class="text-danger"></span>
+                </div>
+                </div>*@
+
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Voltar</a>
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    @*<a asp-action="Index">Back to List</a>*@
 </div>
 
 @section Scripts {

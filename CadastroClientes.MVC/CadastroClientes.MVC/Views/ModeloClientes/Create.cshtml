@@ -1,12 +1,12 @@
 ﻿@model CadastroClientes.MVC.Models.ModeloCliente
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Cadastro";
 }
 
-<h1>Create</h1>
+<h1>Cadastrar novo cliente</h1>
 
-<h4>ModeloCliente</h4>
+<h4>Dados do cliente</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -18,22 +18,35 @@
                 <span asp-validation-for="CPF" class="text-danger"></span>
             </div>
             <div class="form-group">
-@*                <label asp-for="Idade" class="control-label"></label>
-                <select asp-for="Idade" class="form-select">
-                    @for (var i = 10; i < 100; i++)
-                    {
-                        <option value=@i>@i</option>
-                    }
-                </select>
-                <span asp-validation-for="Idade" class="text-danger"></span>*@
-            </div>
-            <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
                 <input asp-for="Nome" class="form-control" />
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label asp-for="DataNascimento" class="control-label"></label>
+                        <input asp-for="DataNascimento" class="form-control" /> @*type="date" *@
+                        <span asp-validation-for="DataNascimento" class="text-danger"></span>
+                    </div>
+                </div>
+               @*<div class="col-sm-6">
+                        <div class="form-group">
+                            <label asp-for="Idade" class="control-label"></label>
+                            <span id="IdadeCliente"> colocar aqui a idade do cliente</span>
+                            <span asp-validation-for="Idade" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="PoderDeDecisao" class="control-label"></label>
+                            colocar aqui o simbolodo do poder de decisão
+                            <span asp-validation-for="Idade" class="text-danger"></span>
+                        </div>
+                </div>*@
+            </div>
+            
+         
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Cadastrar" class="btn btn-primary" />
                 <a asp-action="Index" class="btn btn-secondary">Voltar</a>
             </div>
         </form>

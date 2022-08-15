@@ -21,7 +21,7 @@ namespace CadastroClientesCore.Tests
             int anoNasc, int mesNasc, int diaNasc,
             int anoAtual, int MesAtual, int diatual, int idadeEsperada)
         {   
-            var nascimento = new DateOnly(anoNasc, mesNasc, diaNasc);
+            var nascimento = new DateTime(anoNasc, mesNasc, diaNasc);
             var hoje = new DateOnly(anoAtual, MesAtual, diatual);
 
             ModeloCliente.ObterIdade(nascimento, hoje).Should().Be(idadeEsperada);
