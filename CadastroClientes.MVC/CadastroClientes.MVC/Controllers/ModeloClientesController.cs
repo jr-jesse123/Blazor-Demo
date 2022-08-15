@@ -61,15 +61,18 @@ namespace CadastroClientes.MVC.Controllers
                 catch (DbUpdateException ex) when (ex.InnerException?.Message.Contains("UNIQUE constraint failed: clientes.CPF") ?? false) 
                 {
                     ModelState.AddModelError($"{nameof(modeloCliente)}.{nameof(modeloCliente.CPF)}", "Desculpe, já existe outro cliente com este cpf."  );
+                    return View(modeloCliente);
                 }
                 catch (Exception ex)
                 {
                     ModelState.AddModelError("", "Não foi possível adicionar o cliente. " + ex.Message);
+                    return View(modeloCliente);
                 }
 
-                return View(modeloCliente);
-            }
             return RedirectToAction(nameof(Index));
+            }
+            
+            return View(modeloCliente);
         }
 
         // GET: ModeloClientes/Edit/5
@@ -85,17 +88,6 @@ namespace CadastroClientes.MVC.Controllers
 
             return View(clienteLocalizado);
 
-            //if (id == null || _context.clientes == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //var modeloCliente = await _context.clientes.FindAsync(id);
-            //if (modeloCliente == null)
-            //{
-            //    return NotFound();
-            //}
-            //return View(modeloCliente);
         }
 
         

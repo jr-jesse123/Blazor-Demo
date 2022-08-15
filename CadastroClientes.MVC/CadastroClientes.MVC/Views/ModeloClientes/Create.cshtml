@@ -18,9 +18,14 @@
                 <span asp-validation-for="CPF" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Idade" class="control-label"></label>
-                <input asp-for="Idade" class="form-control" />
-                <span asp-validation-for="Idade" class="text-danger"></span>
+@*                <label asp-for="Idade" class="control-label"></label>
+                <select asp-for="Idade" class="form-select">
+                    @for (var i = 10; i < 100; i++)
+                    {
+                        <option value=@i>@i</option>
+                    }
+                </select>
+                <span asp-validation-for="Idade" class="text-danger"></span>*@
             </div>
             <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
@@ -29,15 +34,56 @@
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Voltar</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        function TestaCPF(strCPF) {
+            var Soma;
+            var Resto;
+            Soma = 0;
+            if (strCPF == "00000000000") return false;
+
+            for (i = 1; i <= 9; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (11 - i);
+            Resto = (Soma * 10) % 11;
+
+            if ((Resto == 10) || (Resto == 11)) Resto = 0;
+            if (Resto != parseInt(strCPF.substring(9, 10))) return false;
+
+            Soma = 0;
+            for (i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (12 - i);
+            Resto = (Soma * 10) % 11;
+
+            if ((Resto == 10) || (Resto == 11)) Resto = 0;
+            if (Resto != parseInt(strCPF.substring(10, 11))) return false;
+            return true;
+        }
+        function ValidarCpf(){
+            let x = $('#CPF')[0]
+
+            console.log('inscrito')
+
+            x.onchange = _ => {
+                if (TestaCPF(x.value)){
+                    console.log('true')
+                    $('body > div > main > div > div > form > div:nth-child(2) > span')[0].innerText = ''
+                }else{
+                    console.log('false');
+                    setTimeout(function name(params) {
+                        $('body > div > main > div > div > form > div:nth-child(2) > span')[0].innerText = 'teste'
+                    }, 100)
+                }
+                
+            } 
+        }
+        ValidarCpf()
+
+        //var strCPF = "12345678909";
+        //alert(TestaCPF(strCPF));
+    </script>
 }
