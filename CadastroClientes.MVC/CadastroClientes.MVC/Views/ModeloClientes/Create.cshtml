@@ -22,26 +22,31 @@
                 <input asp-for="Nome" class="form-control" />
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
-            <div class="row">
-                <div class="col-sm-6">
+            <div class="row align-items-center my-2">
+                <div class="col-sm-7">
                     <div class="form-group">
                         <label asp-for="DataNascimento" class="control-label"></label>
                         <input asp-for="DataNascimento" class="form-control" /> @*type="date" *@
                         <span asp-validation-for="DataNascimento" class="text-danger"></span>
                     </div>
                 </div>
-               @*<div class="col-sm-6">
-                        <div class="form-group">
-                            <label asp-for="Idade" class="control-label"></label>
-                            <span id="IdadeCliente"> colocar aqui a idade do cliente</span>
-                            <span asp-validation-for="Idade" class="text-danger"></span>
+                <div class="col-sm-5 oculto" id="informacoesDinamicas">
+                    <div class="form-group ">
+                        <label class="control-label">Idade: </label>
+                        @*<span> @Model.Idade</span>*@
+                        <span id="IdadeCliente"></span>
                         </div>
-                        <div class="form-group">
-                            <label asp-for="PoderDeDecisao" class="control-label"></label>
-                            colocar aqui o simbolodo do poder de decisão
-                            <span asp-validation-for="Idade" class="text-danger"></span>
+                    <div class="form-group">
+                        <label class="control-label">Poder De Decisao: </label>
+                            <div class="justify-content-start align-items-center">
+                                @*@Model.PoderDeDecisao
+                                <span class="semaforo d-inline-block mx-2 @Model.PoderDeDecisao"></span>*@
+                                <span id="poderDecisao" class="d-inline"></span>
+                                <span id="semaforoPD" class="semaforo d-inline-block mx-2"></span>
+
+                            </div>
                         </div>
-                </div>*@
+                </div>
             </div>
             
          
@@ -55,6 +60,59 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        
+        function mostrarCamposDinamicos(){
+            let colunaDinmamica = $('#informacoesDinamicas')[0]
+            colunaDinmamica.classList.remove('oculto')
+        }
+        
+    </script>
+
+    <script>
+        //script para mostrar a idade do cliente
+        function obterIdade() {
+            var dataNascimento = document.getElementById('DataNascimento').value;
+            var Bday = new Date(dataNascimento);
+            var idade = ~~ ((Date.now() - Bday) / (31557600000));
+            return idade
+        }
+
+        function obterPoderDedecisao(idade){
+            if (idade < 18) {
+                return 'Limitado'
+            }
+            else if(idade < 25){
+                return 'Elevado'
+            }else{
+                return 'Total'
+            }
+        }
+        
+        function ConfigurarPoderDeDecisao(){
+            let idade = obterIdade()
+            let elementoPDD = $('#poderDecisao')[0]
+            elementoPDD.innerText = obterPoderDedecisao(obterIdade())
+
+            let elementoSemaforo = $('#semaforoPD')[0]
+            elementoSemaforo.classList.add(obterPoderDedecisao(obterIdade()))
+        }
+
+        let inputdt = $('#DataNascimento')[0]
+        let idadeOutput = $('#IdadeCliente')[0]
+        
+        inputdt.onchange = e => {
+            idadeOutput.innerText = obterIdade()
+            ConfigurarPoderDeDecisao()
+            mostrarCamposDinamicos()
+        } 
+
+        
+
+    </script>
+
+
    @* <script>
         function TestaCPF(strCPF) {
             var Soma;
@@ -98,3 +156,22 @@
 
     </script>*@
 }
+
+
+
+
+
+
+@*
+
+resposta do stack overflow
+
+function submitBday() {
+    var Q4A = "Your birthday is: ";
+    var Bdate = document.getElementById('bday').value;
+    var Bday = +new Date(Bdate);
+    Q4A += Bdate + ". You are " + ~~ ((Date.now() - Bday) / (31557600000));
+    var theBday = document.getElementById('resultBday');
+    theBday.innerHTML = Q4A;
+}
+*@

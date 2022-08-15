@@ -35,3 +35,7 @@ body {
 .Limitado {
     background-color: red;
 }
+
+.oculto{
+    display: none
+}
