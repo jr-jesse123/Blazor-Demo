@@ -2,6 +2,7 @@ using CadastroClientesCore.Data;
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -30,7 +31,7 @@ app.UseRequestLocalization(new RequestLocalizationOptions
 });
 
 
-var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 
