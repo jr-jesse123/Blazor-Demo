@@ -1,0 +1,63 @@
+﻿@page "/ModeloClientes/Delete/{id}"
+@using CadastroCliente.SPA.Components
+@using CadastroClientes.MVC.Models
+@using CadastroClientesCore.Data
+
+@inject Func<RepositorioClientes> repoFactory ;
+@inject NavigationManager navMan;
+
+@code {
+    [Parameter]
+    public string id { get; set; }
+
+
+    ModeloCliente Cliente { get; set; } = new ModeloCliente();
+
+    protected override void OnInitialized()
+    {
+        using var repo = repoFactory();
+        Cliente = repo.ObterPorCPF(id);
+    }
+    void DeletarCliente()
+    {
+        using var repo = repoFactory();
+        repo.Remover(Cliente);
+        navMan.NavigateTo("/GestaoClientes");
+    }
+}
+
+
+    <h1>Deletar</h1>
+
+    <h3>Deseja Deletar permanentemente o cliente @Cliente.Nome ?</h3>
+    <div>
+        <h4>Dados do cliente</h4>
+        <hr>
+        <dl class="row">
+
+
+            <dt class="col-sm-2">
+                Data de Nascimento
+            </dt>
+            <dd class="col-sm-10">
+                @Cliente.DataNascimento.ToLongDateString()
+            </dd>
+            <dt class="col-sm-2">
+                Idade
+            </dt>
+            <dd class="col-sm-10">
+                @Cliente.Idade
+            </dd>
+            <dt class="col-sm-2">
+                Poder de Decisão
+            </dt>
+            <dd class="col-sm-10">
+                <PoderDecisao VlrPoderDecisao="Cliente.PoderDeDecisao"/>
+            </dd>
+    
+        </dl>
+
+        <button type="submit" @onclick=DeletarCliente class="btn btn-danger">Deletar</button> |
+        <button class="btn btn-secondary" @onclick=@(() => navMan.NavigateTo("GestaoClientes"))>Voltar</button>
+    </div>
+

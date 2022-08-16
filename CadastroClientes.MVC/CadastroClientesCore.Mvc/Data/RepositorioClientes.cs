@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CadastroClientesCore.Data
 {
-    public class RepositorioClientes
+    public class RepositorioClientes : IDisposable
     {
         public RepositorioClientes(CadastroClientesContext context)
         {

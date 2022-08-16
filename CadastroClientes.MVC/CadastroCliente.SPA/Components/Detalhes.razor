@@ -1,0 +1,43 @@
+﻿@using CadastroClientes.MVC.Models
+
+
+@code {
+    [Parameter,EditorRequired]
+    public ModeloCliente Cliente { get; set; }
+    [Parameter,EditorRequired]
+    public EventCallback OnVoltarClicked { get; set; }
+}
+    <h1>Detalhes</h1>
+
+    <div>
+        <h4>Cliente : @Cliente?.Nome</h4>
+        <hr>
+        <dl class="row">
+
+            <dt class="col-sm-2">
+                Data de Nascimento
+            </dt>
+            <dd class="col-sm-10">
+                @Cliente?.DataNascimento.ToLongDateString();
+            </dd>
+            <dt class="col-sm-2">
+                Idade
+            </dt>
+            <dd class="col-sm-10">
+                @Cliente.Idade
+            </dd>
+            <dt class="col-sm-2">
+                Poder de Decisão
+            </dt>
+            <dd class="col-sm-10">
+                <PoderDecisao VlrPoderDecisao="Cliente.PoderDeDecisao" />
+            </dd>
+
+
+        </dl>
+    </div>
+    <div>
+        <a class="btn btn-primary" href="/ModeloClientes/Edit/01724125109">Editar</a> |
+        <button class="btn btn-secondary" @onclick=OnVoltarClicked >Voltar</button>
+    </div>
+

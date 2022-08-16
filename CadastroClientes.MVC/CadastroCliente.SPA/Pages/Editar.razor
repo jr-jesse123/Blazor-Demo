@@ -1,0 +1,38 @@
+﻿@page "/ModeloClientes/Edit/{id}"
+@using CadastroCliente.SPA.Components
+@using CadastroClientes.MVC.Models
+@using CadastroClientesCore.Data
+
+@inject Func<RepositorioClientes> repoFactory;
+@inject NavigationManager navMan;
+
+@code{
+    [Parameter]
+    public string id { get; set; }
+
+    ModeloCliente Cliente { get; set; } = new ModeloCliente();
+
+    protected override void OnInitialized()
+    {
+        using var repo = repoFactory();
+        Cliente = repo.ObterPorCPF(id);
+    }
+    void atualizarCliente(ModeloCliente cliente){
+        using var repo = repoFactory();
+        repo.Atualizar(cliente);
+        navMan.NavigateTo("/GestaoClientes");
+    }
+}
+    
+
+<h1>Editar </h1>
+
+    <h4>cliente com cpf : @id</h4>
+    <hr>
+
+    <FormularioCliente  
+        OnRetornoClicked="@(_ => navMan.NavigateTo("/GestaoClientes"))"
+        OnValidSubmit=atualizarCliente
+         modelo="Cliente"
+        />
+    

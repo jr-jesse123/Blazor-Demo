@@ -1,0 +1,13 @@
+﻿@using CadastroClientes.MVC.Models
+
+
+<div class="row justify-content-start align-items-center">
+    @VlrPoderDecisao
+    <span class="semaforo d-inline-block mx-2 @VlrPoderDecisao"></span>
+</div>
+
+@code {
+    
+    [Parameter, EditorRequired]
+    public PoderDeDecisao VlrPoderDecisao { get; set; }
+}

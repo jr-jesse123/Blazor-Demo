@@ -1,0 +1,70 @@
+﻿@page "/GestaoClientes"
+@using CadastroCliente.SPA.Components
+@using CadastroClientes.MVC.Models
+@using CadastroClientesCore.Data
+
+@inject Func<RepositorioClientes> repoFactory;
+    
+@code{
+
+    public enum Paginas
+    {
+        ListarClientes,
+        AdicionarCliente,
+        Detalhes
+    }
+
+
+    Paginas pagina = Paginas.ListarClientes;
+
+    List<ModeloCliente> clientes = new List<ModeloCliente>();
+
+    ModeloCliente? clienteParaDetalhar = null;
+
+    protected override void OnInitialized()
+    {
+        carregarClientes();
+    }
+
+    void carregarClientes(){
+        using var repo = repoFactory();
+        clientes = repo.ObterTodos().ToList();
+    }
+
+
+    void AdicionarCliente(ModeloCliente cliente){
+        using var repo = repoFactory();
+        repo.Adicionar(cliente); 
+        carregarClientes();
+        pagina = Paginas.ListarClientes;
+    }
+
+    void DetalharCliente(ModeloCliente cliente){
+        clienteParaDetalhar = cliente;
+        pagina = Paginas.Detalhes;
+    }
+    
+}
+
+<div class="@(pagina == Paginas.ListarClientes ? "" : "oculto")">
+    <ListaClientes Clientes="clientes" 
+        OnAdicionarClienteClicked="() => pagina = Paginas.AdicionarCliente"
+        OnDetalhesClicked="DetalharCliente"
+        />
+</div>
+
+<div class="@(pagina == Paginas.AdicionarCliente ? "" : "oculto")">
+    <FormularioCliente 
+        modelo="new ModeloCliente()"
+        OnRetornoClicked="() => pagina = Paginas.ListarClientes"
+        OnValidSubmit=AdicionarCliente />
+</div>
+
+<div class="@(pagina == Paginas.Detalhes ? "" : "oculto")">
+    @if (clienteParaDetalhar != null)
+    {
+        <Detalhes Cliente="clienteParaDetalhar" OnVoltarClicked="() => pagina = Paginas.ListarClientes" />
+    }
+
+
+</div>

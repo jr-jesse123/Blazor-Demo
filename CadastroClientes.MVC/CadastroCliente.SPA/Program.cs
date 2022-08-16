@@ -15,8 +15,9 @@ builder.Services.AddSingleton<WeatherForecastService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<CadastroClientesContext>();
+builder.Services.AddDbContext<CadastroClientesContext>(ServiceLifetime.Transient);
 builder.Services.AddTransient<RepositorioClientes>();
+builder.Services.AddTransient<Func<RepositorioClientes>>(sp => () => sp.GetService<RepositorioClientes>()!);
 
 var app = builder.Build();
 

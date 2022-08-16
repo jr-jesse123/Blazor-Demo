@@ -1,0 +1,45 @@
+﻿@using CadastroCliente.SPA.Components
+@using CadastroClientes.MVC.Models
+@using CadastroClientesCore.Data
+
+
+@code {
+    [Parameter, EditorRequired]
+    public IEnumerable<ModeloCliente> Clientes { get; set; }
+    [Parameter, EditorRequired]
+    public EventCallback OnAdicionarClienteClicked { get; set; }
+
+    [Parameter, EditorRequired]
+    public EventCallback<ModeloCliente> OnDetalhesClicked { get; set; }
+}
+
+
+<h1>Lista de Clientes</h1>
+<button class="btn btn-primary" @onclick=OnAdicionarClienteClicked>Adicionar novo Cliente</button>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nome
+            </th>
+            <th>
+                Idade
+            </th>
+            <th>
+                Poder de Decisão
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Clientes is not null && Clientes.Count() > 0)
+        {
+            foreach (var cliente in Clientes)
+            {
+                <ClienteTr Cliente="cliente" OnDetalhesClicked="OnDetalhesClicked" />
+            }
+        }
+    </tbody>
+
+</table>

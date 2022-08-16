@@ -13,6 +13,9 @@
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "applicationUrl": "http://localhost:5142",
+      "launchUrl": "GestaoClientes",
+      "hotReloadEnabled": true,
+      "hotReloadProfile": "aspnetcore",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

@@ -1,0 +1,25 @@
+﻿@using CadastroClientes.MVC.Models
+@code{
+    [Parameter,EditorRequired]
+    public ModeloCliente Cliente { get; set; }
+    
+    [Parameter, EditorRequired]
+    public EventCallback<ModeloCliente> OnDetalhesClicked { get; set; }
+}
+
+<tr>
+    <td>
+        @Cliente.Nome
+    </td>
+    <td>
+        @Cliente.Idade
+    </td>
+    <td>
+        <PoderDecisao VlrPoderDecisao=@Cliente.PoderDeDecisao />
+    </td>
+    <td>
+        <a class="btn btn-secondary" href="/ModeloClientes/Edit/01724125109">Editar</a> |
+        <button class="btn btn-info" @onclick="(async _ => await OnDetalhesClicked.InvokeAsync(Cliente))">Detalhes</button>
+        <a class="btn btn-danger" href="/ModeloClientes/Delete/@Cliente.CPF">Deletar</a>
+    </td>
+</tr>
