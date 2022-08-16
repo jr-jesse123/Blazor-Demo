@@ -11,10 +11,22 @@ namespace CadastroClientes.API.Controllers
     public class ModeloClienteController : ControllerBase
     {
         private readonly RepositorioClientes repositorio;
+        private readonly IHttpContextAccessor contextAccessor;
 
-        public ModeloClienteController(RepositorioClientes repositorio)
+        public ModeloClienteController(RepositorioClientes repositorio, IHttpContextAccessor  contextAccessor)
         {
+            
             this.repositorio = repositorio;
+            this.contextAccessor = contextAccessor;
+            contextAccessor.HttpContext.Response.Headers
+                .Add("Access-Control-Allow-Credential", "true");
+            contextAccessor.HttpContext.Response.Headers
+                .Add("Access-Control-Allow-Origin", "*");
+            contextAccessor.HttpContext.Response.Headers
+                .Add("Access-Control-Allow-Methods", "GET,OPTIONS,PATCH,DELETE,POST,PUT");
+            contextAccessor.HttpContext.Response.Headers
+                .Add("Access-Control-Allow-HEADERS", "X-CSRF-Token, X-Requested-With, Accept, Accept-Language, Content-Language, Content-Type");
+
         }
 
         // GET: api/<ModeloClienteController>

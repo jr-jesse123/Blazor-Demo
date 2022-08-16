@@ -13,6 +13,9 @@ builder.Services.AddControllers();
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<CadastroClientesContext>();
 builder.Services.AddTransient<RepositorioClientes>();
+//builder.Services.AddCors();
+builder.Services.AddHttpContextAccessor();
+
 
 var app = builder.Build();
 
@@ -29,6 +32,14 @@ app.UseRequestLocalization(new RequestLocalizationOptions
     SupportedCultures = supportedCultures,
     SupportedUICultures = supportedCultures,
 });
+
+//app.UseCors(p =>
+
+//    p.AllowAnyOrigin()
+//    .AllowAnyHeader()
+//    .AllowAnyMethod()
+//    .Build()
+//);
 
 
 
