@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JavascriptSPA", "Javascript
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CadastroClientes.API", "CadastroClientes.API\CadastroClientes.API.csproj", "{FF4CF4EC-01DD-4B8B-A7C5-92AAF54591B1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BlazorSap", "BlazorSap", "{098FA9DE-D4AC-4BFB-A3FE-16621D3B5B53}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BlazorSPA", "BlazorSPA", "{098FA9DE-D4AC-4BFB-A3FE-16621D3B5B53}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CadastroCliente.SPA", "CadastroCliente.SPA\CadastroCliente.SPA.csproj", "{4EE0D922-D79E-4B11-8350-42A8D40931BC}"
 EndProject
