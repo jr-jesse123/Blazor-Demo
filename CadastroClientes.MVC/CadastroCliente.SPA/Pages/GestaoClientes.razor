@@ -5,6 +5,32 @@
 
 @inject Func<RepositorioClientes> repoFactory;
     
+
+<div class="@(pagina == Paginas.ListarClientes ? "" : "oculto")">
+    <ListaClientes Clientes="clientes" 
+        OnAdicionarClienteClicked="() => pagina = Paginas.AdicionarCliente"
+        OnDetalhesClicked="DetalharCliente"
+        />
+</div>
+
+<div class="@(pagina == Paginas.AdicionarCliente ? "" : "oculto")">
+    <FormularioCliente 
+        modelo="new ModeloCliente()"
+        OnRetornoClicked="() => pagina = Paginas.ListarClientes"
+        OnValidSubmit=AdicionarCliente />
+</div>
+
+<div class="@(pagina == Paginas.Detalhes ? "" : "oculto")">
+    @if (clienteParaDetalhar != null)
+    {
+        <Detalhes Cliente="clienteParaDetalhar" OnVoltarClicked="() => pagina = Paginas.ListarClientes" />
+    }
+
+
+</div>
+
+
+
 @code{
 
     public enum Paginas
@@ -45,26 +71,3 @@
     }
     
 }
-
-<div class="@(pagina == Paginas.ListarClientes ? "" : "oculto")">
-    <ListaClientes Clientes="clientes" 
-        OnAdicionarClienteClicked="() => pagina = Paginas.AdicionarCliente"
-        OnDetalhesClicked="DetalharCliente"
-        />
-</div>
-
-<div class="@(pagina == Paginas.AdicionarCliente ? "" : "oculto")">
-    <FormularioCliente 
-        modelo="new ModeloCliente()"
-        OnRetornoClicked="() => pagina = Paginas.ListarClientes"
-        OnValidSubmit=AdicionarCliente />
-</div>
-
-<div class="@(pagina == Paginas.Detalhes ? "" : "oculto")">
-    @if (clienteParaDetalhar != null)
-    {
-        <Detalhes Cliente="clienteParaDetalhar" OnVoltarClicked="() => pagina = Paginas.ListarClientes" />
-    }
-
-
-</div>

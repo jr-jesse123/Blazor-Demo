@@ -26,24 +26,29 @@
                 <div class="col-sm-7">
                     <div class="form-group">
                         <label asp-for="DataNascimento" class="control-label"></label>
-                        <input asp-for="DataNascimento" class="form-control" /> @*type="date" *@
+                        <input asp-for="DataNascimento" class="form-control" /> 
                         <span asp-validation-for="DataNascimento" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-sm-5 oculto" id="informacoesDinamicas">
                     <div class="form-group ">
                         <label class="control-label">Idade: </label>
-                        @*<span> @Model.Idade</span>*@
-                        <span id="IdadeCliente"></span>
+                            <div class="Exercicio">
+                                @*<span> @Model.Idade</span>*@
+                                @*<span id="IdadeCliente"></span>*@
+                            </div>
                         </div>
                     <div class="form-group">
                         <label class="control-label">Poder De Decisao: </label>
                             <div class="justify-content-start align-items-center">
-                                @*@Model.PoderDeDecisao
-                                <span class="semaforo d-inline-block mx-2 @Model.PoderDeDecisao"></span>*@
-                                <span id="poderDecisao" class="d-inline"></span>
-                                <span id="semaforoPD" class="semaforo d-inline-block mx-2"></span>
+                                <div class="execicio">
+                                    @*@Model.PoderDeDecisao
+                                    <span class="semaforo d-inline-block mx-2 @Model.PoderDeDecisao"></span>*@
 
+                                    @*<span id="poderDecisao" class="d-inline"></span>
+                                    <span id="semaforoPD" class="semaforo d-inline-block mx-2"></span>
+                                    *@
+                                </div>
                             </div>
                         </div>
                 </div>
@@ -60,7 +65,7 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-
+@*
     <script>
         
         function mostrarCamposDinamicos(){
@@ -68,8 +73,9 @@
             colunaDinmamica.classList.remove('oculto')
         }
         
-    </script>
+    </script>*@
 
+@*
     <script>
         //script para mostrar a idade do cliente
         function obterIdade() {
@@ -111,7 +117,7 @@
         
 
     </script>
-
+*@
 
    @* <script>
         function TestaCPF(strCPF) {

@@ -40,6 +40,8 @@
 
 }
 
+
+
 <EditForm Model="modelo" OnValidSubmit=@(x => realizarSubmit((ModeloCliente)x.Model))>
     <DataAnnotationsValidator />
     <div class="text-danger">@erros</div>
@@ -63,6 +65,19 @@
             <ValidationMessage For="@(() => modelo.DataNascimento)" />
         </div>
         
+
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <button type="button" class="btn btn-secondary" @onclick=OnRetornoClicked >Voltar</button>
+    </div>
+
+</EditForm>
+
+
+@*
+
         <div class="col-sm-5 @(modelo.Idade < 100 && apresentarCpf ? "" : "oculto") ">
             <div class="form-group ">
                 <label class="control-label">Idade: </label>
@@ -74,12 +89,4 @@
                     <PoderDecisao VlrPoderDecisao="@modelo.PoderDeDecisao"/>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
-        <button type="button" class="btn btn-secondary" @onclick=OnRetornoClicked >Voltar</button>
-    </div>
-
-</EditForm>
+        </div>*@
